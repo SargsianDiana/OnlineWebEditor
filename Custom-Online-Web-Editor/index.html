@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <title>Online Web Editor</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="header">
+        <div id="logoDiv">
+          <img id="imgLogo" src="./image/idea.png" />
+          <p>Photon</p>
+        </div>
+        <div id="logo">
+          <img class="logo" src="./image/star.png" />
+          <img class="logo" id="secondLogo" src="./image/star.png" />
+        </div>
+      </div>
+      <div id="folders">
+        <ul id="myList">
+          <li id="myFolderLi"></li>
+        </ul>
+      </div>
+      <!-- <ul>
+        <li class="box" id='a'>Text</li>
+        <li class="box" id='b'>Text1</li>
+        <li class="box" id='c'>Text2</li>
+    </ul>
+    <ul class="menu">
+      <li class="menu-item"  id='setValue'>Delete</li>
+      
+  </ul> -->
+      <input type="text" id="inputBox" />
+      <div id="tabs"></div>
+      <div id="editor">
+        <div></div>
+        <div id="terminalDiv">
+          <p>
+            Terminal
+            <button id="CloseTerminal">x</button>
+          </p>
+          <textarea></textarea>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-database.js"></script>
+    <!-- your custom script -->
+    <script src="./App/main.js" type="module"></script>
+  </body>
+</html>

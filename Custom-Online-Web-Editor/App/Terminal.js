@@ -7,7 +7,7 @@ import fileObj from './File.js';
 
 class Terminal {
   constructor() {
-    this.terminal = false;
+    this.terminal = true;
   }
 
   openTerminal() {
@@ -15,7 +15,7 @@ class Terminal {
     const div = document.createElement('div');
     const btn = document.createElement('button');
 
-    if (!this.terminal) {
+    if (this.terminal) {
       div.id = 'terminalDiv';
 
       const p = document.createElement('p');
@@ -37,8 +37,8 @@ class Terminal {
   }
 
   closeTerminal() {
-    const close = document.getElementById('terminalDiv');
-    close.parentNode.removeChild(close);
+      const close = document.getElementById('terminalDiv');
+      close.parentNode.removeChild(close);
   }
 
   // createFile() {

@@ -69,64 +69,86 @@
 }
 
 .logo {
-  width: 40px;
+  width: 35px;
   height: 35px;
   position: relative;
-  animation: logo 6s infinite;
+  animation: logo 5s infinite;
   animation-timing-function: linear;
-  transform: rotate(90deg);
+  animation-delay: 0s;
 }
 
 @keyframes logo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
   0% {
-    left: -0%;
+    left: 0%;
+    top: 0%;
   }
   25% {
-    left: -100%;
+    left: 25%;
+    top: 50%;
   }
   50% {
-    left: -100%;
+    left: 50%;
+    top: 0%;
   }
   75% {
-    left: -0%;
+    left: 75%;
+    top: 50%;
   }
   100% {
-    right: -0%;
+    left: 95%;
+    top: 0%;
   }
 }
 
-#secondLogo {
-  width: 40px;
+/* #secondLogo {
+  width: 35px;
   height: 35px;
   position: relative;
-  animation: secondLogo 6s infinite;
-  animation-delay: 0s;
+  animation: logo 5s infinite;
   animation-timing-function: linear;
-  transform: rotate(90deg);
+  animation-delay: 0s;
 }
 @keyframes secondLogo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
   0% {
-    left: -95%;
+    left: -0%;
+    top: 0%;
   }
   25% {
-    left: -0%;
+    left: -25%;
+    top: 50%;
   }
   50% {
-    left: -0%;
+    left: -50%;
+    top: 0%;
   }
   75% {
-    left: -95%;
+    left: -75%;
+    top: 50%;
   }
   100% {
-    right: 95%;
+    left: -95%;
+    top: 0%;
   }
-}
+} */
 
 #logo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding-top: 5px;
   width: 100%;
-  align-items: flex-end;
+  justify-content: space-between;
 }
 
 #imgLogo {
@@ -140,7 +162,6 @@
   grid-auto-flow: column;
   justify-content: end;
   grid-area: folders;
-  /* justify-self: center; */
   background: #b3c3d1;
 }
 

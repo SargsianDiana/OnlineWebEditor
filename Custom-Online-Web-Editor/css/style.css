@@ -5,7 +5,7 @@
 }
 
 body {
-overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 #myList li {
@@ -157,7 +157,6 @@ overflow-x: hidden;
   flex-direction: column;
   width: 100%;
   align-items: flex-end;
-  
 }
 
 #imgLogo {
@@ -294,9 +293,10 @@ p {
 
 #CloseTerminal {
   color: white;
-  background-color: #F9572D;
+  background-color: #f9572d;
   width: 20px;
   border-radius: 30%;
+  margin: 5px;
   outline: none;
 }
 

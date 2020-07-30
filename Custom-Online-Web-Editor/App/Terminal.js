@@ -1,4 +1,4 @@
-import fileObj from "./File.js";
+import fileObj from './File.js';
 
 // const txtarea = document.getElementById("firstLine");
 // const txtId = txtarea.firstLine;
@@ -6,74 +6,68 @@ import fileObj from "./File.js";
 //const innerTextArea = document.createElement('textarea');
 
 class Terminal {
-    constructor() {
-        this.terminal = false;
+  constructor() {
+    this.terminal = false;
+  }
+
+  openTerminal() {
+    const editor = document.getElementById('editor');
+    const div = document.createElement('div');
+    const btn = document.createElement('button');
+
+    if (!this.terminal) {
+      div.id = 'terminalDiv';
+
+      const p = document.createElement('p');
+      const txtArea = document.createElement('textarea');
+
+      btn.innerText = 'x';
+      btn.id = 'CloseTerminal';
+      txtArea.id = 'txtArea';
+
+      p.innerText = 'Terminal';
+      p.append(btn);
+      div.append(p);
+      div.append(txtArea);
+      editor.append(div);
+
+      this.terminal = true;
+      btn.onclick = this.closeTerminal;
     }
+  }
 
-    openTerminal() {
-        const editor = document.getElementById("editor");
-        const div = document.createElement('div');
-        const btn = document.createElement("button");
-
-        if (!this.terminal) {
-
-
-            div.id = "terminalDiv";
-
-            const p = document.createElement('p');
-            const txtArea = document.createElement('textarea');
-
-            btn.innerText = "x";
-            btn.id = "CloseTerminal";
-            txtArea.id = "txtArea";
-
-            p.innerText = "Terminal";
-            p.append(btn);
-            div.append(p);
-            div.append(txtArea);
-            editor.append(div);
-
-            this.terminal = true;
-            btn.onclick = this.closeTerminal;
-        }
-
+  closeTerminal() {
+    if (this.terminal) {
+      editor.removeChild(editor.childNodes[1]);
     }
+  }
 
-    closeTerminal() {
-        if (this.terminal) {
-            editor.removeChild(editor.childNodes[1])
-        }
-    }
+  // createFile() {
+  //     const txtArea = document.getElementById('txtArea');
+  //     return fileObj.createInput('txtArea')
+  // }
 
-    // createFile() {
-    //     const txtArea = document.getElementById('txtArea');
-    //     return fileObj.createInput('txtArea')
-    // }
+  // findFileType(typeName) {
+  //     let str = typeName.split(".");
+  //     const htmlEl = document.createElement("img");
+  //     const li = document.getElementById("forImages")
+  //     if (str[1] === "html") {
 
+  //     }
+  // }
 
+  // commandSubmit(e) {
+  //     if (e.keyCode == 13) {
+  //         let inputEl = document.getElementById("fileBox");
+  //         fileObj.createFile(inputEl.value);
+  //         inputEl.remove()
+  //         fileObj.executed = false;
 
-    // findFileType(typeName) {
-    //     let str = typeName.split(".");
-    //     const htmlEl = document.createElement("img");
-    //     const li = document.getElementById("forImages")
-    //     if (str[1] === "html") {
-
-    //     }
-    // }
-
-    // commandSubmit(e) {
-    //     if (e.keyCode == 13) {
-    //         let inputEl = document.getElementById("fileBox");
-    //         fileObj.createFile(inputEl.value);
-    //         inputEl.remove()
-    //         fileObj.executed = false;
-
-    //         const textArea = document.createElement('textarea');
-    //         txtId += 1;
-    //         textArea.id = txtId;
-    //     }
-    // }
-
+  //         const textArea = document.createElement('textarea');
+  //         txtId += 1;
+  //         textArea.id = txtId;
+  //     }
+  // }
 }
 
 export default new Terminal();

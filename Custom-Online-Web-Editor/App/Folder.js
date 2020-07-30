@@ -16,10 +16,10 @@ class Folder {
 
     const ref = firebase.database().ref('/Folder/');
     ref.once('value').then(function (snapshot) {
-      let id = snapshot.numChildren() + 1;
+      let id = `f${snapshot.numChildren() + 1}`;
       let dbFolder = new DbFolder(id, folderName);
 
-      customLi.id = snapshot.numChildren() + 1;
+      customLi.id = `f${snapshot.numChildren() + 1}`;
 
       Fire.database()
         .ref(`Folder/${snapshot.numChildren() + 1}`)

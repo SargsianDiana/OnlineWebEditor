@@ -25,7 +25,7 @@ class File {
       const ref = firebase.database().ref('/Menu1/');
 
       ref.once('value').then(function (snapshot) {
-        let id = snapshot.numChildren() + 1;
+        let id = `m${snapshot.numChildren() + 1}`;
         li.id = id;
         let menu = new Menu(id, fileName);
         Fire.database()
@@ -33,22 +33,57 @@ class File {
           .set({
             text: menu,
           });
-      });
+          
+          })
+          .then(function(menu = null){
+              menu = document.querySelector('.menu');
+              menu.classList.add('off');
+              let box = document.getElementsByClassName('box');
+              for(let i = 0;i < box.length; i++){
+                box[i].addEventListener('contextmenu', function(ev){
+                  ev.preventDefault(); 
+                  //show the custom menu
+                  inputBox.value = ev.target.id
+                  console.log( ev.clientX, ev.clientY );
+                  menu.style.top = `${ev.clientY - 20}px`;
+                  menu.style.left = `${ev.clientX - 20}px`;
+                  menu.classList.remove('off');
+                
+                });
+            }    
+          })
     } else {
       const ref = firebase.database().ref('/subMenu/');
 
-      ref.once('value').then(function (snapshot) {
-        let id = snapshot.numChildren() + 1;
-        let activeId = document.querySelector('.active').id;
-        li.id = id;
-        let subMenu = new Submenu(id, activeId, fileName);
+            ref.once('value').then(function (snapshot) {
+              let id = `s${snapshot.numChildren() + 1}`;
+              let activeId = document.querySelector('.active').id;
+              li.id = id;
+              let subMenu = new Submenu(id, activeId, fileName);
 
-        Fire.database()
-          .ref(`subMenu/${snapshot.numChildren() + 1}`)
-          .set({
-            text: subMenu,
-          });
-      });
+            Fire.database()
+              .ref(`subMenu/${snapshot.numChildren() + 1}`)
+              .set({
+                text: subMenu,
+              });
+          })
+          .then(function(menu = null){
+            menu = document.querySelector('.menu');
+            menu.classList.add('off');
+            let box = document.getElementsByClassName('box');
+            for(let i = 0;i < box.length; i++){
+              box[i].addEventListener('contextmenu', function(ev){
+                ev.preventDefault(); 
+                //show the custom menu
+                inputBox.value = ev.target.id
+                console.log( ev.clientX, ev.clientY );
+                menu.style.top = `${ev.clientY - 20}px`;
+                menu.style.left = `${ev.clientX - 20}px`;
+                menu.classList.remove('off');
+              
+              });
+            }    
+        })
 
       element.append(li);
     }

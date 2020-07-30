@@ -43,7 +43,7 @@ class MyList{
                 for(let j = 1; j <= snapshotOne.numChildren(); j++){
                     
                     let element = document.getElementById(snapshotOne.child(j).val().text.folderId)
-                    element.innerHTML += `<li id=${snapshotOne.child(j).val().text.id} class='toggle'>${snapshotOne.child(j).val().text.text}</li>`
+                    element.innerHTML += `<li id=${snapshotOne.child(j).val().text.id} class='toggle box'>${snapshotOne.child(j).val().text.text}</li>`
                   
                 }
 
@@ -61,6 +61,17 @@ class MyList{
                     } 
                     
                 }
+
+                for(let i = 0; i < snapshotOne.numChildren(); i++){
+                  document.getElementsByClassName('box')[i].addEventListener('contextmenu',function(ev){
+                      ev.preventDefault(); 
+                      inputBox.value = ev.target.id
+                      console.log( ev.clientX, ev.clientY );
+                      menu.style.top = `${ev.clientY - 20}px`;
+                      menu.style.left = `${ev.clientX - 20}px`;
+                      menu.classList.remove('off');
+                  })
+              }
               
                 let flag = false
 

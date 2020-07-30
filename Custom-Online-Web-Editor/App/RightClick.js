@@ -16,18 +16,31 @@ document.addEventListener('DOMContentLoaded', function(){
     //add a listener for leaving the menu and hiding it
     menu.addEventListener('mouseleave', hidemenu);
     
+   
     getValue()
 });
 
 function getValue(){
     document.getElementById("setValue").onclick = function(){
         let id = document.getElementById(inputBox.value).id
-        var adaRef = Fire.database().ref(`Menu1/${id}`);
+        let adaRef = null;
+        if(id.includes('m')){
+          id = id.slice(1)
+          adaRef = Fire.database().ref(`Menu1/${id}`);
+        }
+        else if(id.includes('s')){
+          id = id.slice(1)
+          adaRef = Fire.database().ref(`subMenu/${id}`);
+        }
+        
         adaRef.remove()
+          .then(function(){
+            document.getElementById("myList").innerHTML= "<li id='myFolderLi'></li>"
+          }) 
           .then(function(){
             let myList = new MyList()
             myList.createMyList()
-          })  
+          })         
           .then(function() {
             console.log("Remove succeeded.")
           })

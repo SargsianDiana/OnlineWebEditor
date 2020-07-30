@@ -182,20 +182,6 @@ overflow-x: hidden;
   grid-area: editor;
   background: #495867;
 }
-.actionBtn {
-  width: 35px;
-  height: 35px;
-  margin: 5px;
-  border: 0.5px solid #495867;
-  border-radius: 7px;
-  outline: none;
-  position: relative;
-}
-
-button:hover {
-  cursor: pointer;
-  transition: 0.2ms;
-}
 
 .actionFile {
   width: 35px;
@@ -308,7 +294,7 @@ p {
 
 #CloseTerminal {
   color: white;
-  background-color: lightcoral;
+  background-color: #F9572D;
   width: 20px;
   border-radius: 30%;
   outline: none;

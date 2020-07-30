@@ -2,66 +2,29 @@ import fileObj from "./File.js";
 import folderObj from "./Folder.js";
 import collapseObj from "./Collapse.js";
 
-// const createBtn = function (el, innerText, classList, cb) {
-//   const htmlEl = document.createElement(el);
-//   htmlEl.innerText = innerText;
-//   htmlEl.classList = classList;
-//   htmlEl.onclick = cb;
-
-//   const div = document.getElementById('folders');
-//   div.append(htmlEl);
-// };
-
-// createBtn('button', '+', 'actionBtn', function () {
-//   return fileObj.createInput();
-// });
-
-// createBtn('button', '++', 'actionBtn', function () {
-//   return folderObj.createInput();
-// });
-
-// createBtn('button', '*', 'actionBtn', function () {
-//   return collapseObj.hideToggle();
-// });
-
-// createBtn('button', '⊗ 0 ⚠ 0', 'terminalBtn', function () {
-//   return OpenTerminal();
-// });
-
-// export default 0;
-
-const createBtnImg = function (el, src, classList, cb) {
+const createBtnImg = function (el, src, title, classList, cb) {
   const htmlEl = document.createElement(el);
   htmlEl.src = src;
+  htmlEl.title = title;
   htmlEl.classList = classList;
   htmlEl.onclick = cb;
   const div = document.getElementById("folders");
   div.append(htmlEl);
 };
 
-createBtnImg("img", "./image/file.png", "actionImg", function () {
+createBtnImg("img", "./image/file.png", "New file", "actionFile", function () {
   return fileObj.createInput();
 });
 
-createBtnImg("img", "./image/folderpl.png", "actionImg", function () {
+createBtnImg("img", "./image/new.png", "New folder", "actionFolder", function () {
   return folderObj.createInput();
 });
 
-createBtnImg("img", "./image/collapse.jpg", "actionCollapse", function () {
+createBtnImg("img", "./image/collapse.jpg", "Collapse", "actionCollapse", function () {
   return collapseObj.hideToggle();
 });
 
-const createBtn = function (el, innerText, classList, cb) {
-  const htmlEl = document.createElement(el);
-  htmlEl.innerText = innerText;
-  htmlEl.classList = classList;
-  htmlEl.onclick = cb;
-
-  const div = document.getElementById("folders");
-  div.append(htmlEl);
-};
-
-createBtn("button", "⊗ 0 ⚠ 0", "terminalBtn", function () {
+createBtnImg("img", "./image/terminal.png", "Open terminal", "actionTerminal", function () {
   return OpenTerminal();
 });
 

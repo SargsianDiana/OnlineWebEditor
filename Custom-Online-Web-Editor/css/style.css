@@ -3,10 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* folder and file manipulation buttons */
-/* .actionBtn {    
-      color: red;
-  } */
 
 #myList li {
   list-style-type: none;
@@ -36,9 +32,9 @@
 #app {
   display: grid;
   grid-template-areas:
-    "header header header header header header header header"
-    "folders tab tab tab tab tab tab tab"
-    "folders editor editor editor editor editor editor editor";
+    'header header header header header header header header'
+    'folders tab tab tab tab tab tab tab'
+    'folders editor editor editor editor editor editor editor';
   grid-template-rows: repeat(auto-fill, 70px 35px 610px);
 }
 
@@ -64,7 +60,7 @@
   font-size: 23px;
   margin-top: 43px;
   color: rgb(245, 210, 110);
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   font-style: italic;
 }
 
@@ -174,14 +170,11 @@
   background: #495867;
 }
 .actionBtn {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin: 5px;
   border: 0.5px solid #495867;
   border-radius: 7px;
-  font-size: 17px;
-  background: #495867;
-  color: #cae3fa;
   outline: none;
   position: relative;
 }
@@ -191,33 +184,54 @@ button:hover {
   transition: 0.2ms;
 }
 
-.actionImg {
-  width: 30px;
-  height: 30px;
+.actionFile {
+  width: 35px;
+  height: 35px;
   margin: 5px;
-  font-size: 17px;
-  color: #cae3fa;
   outline: none;
   position: relative;
 }
 
-.actionImg:hover {
+.actionFile:hover {
   cursor: pointer;
   transition: 0.2ms;
 }
 
 .actionCollapse {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin: 5px;
-  border-radius: 7px;
-  font-size: 17px;
-  color: #cae3fa;
+  border-radius: 9px;
   outline: none;
   position: relative;
 }
 
 .actionCollapse:hover {
+  cursor: pointer;
+  transition: 0.2ms;
+}
+
+.actionFolder {
+  width: 45px;
+  height: 50px;
+  top: 0;
+  outline: none;
+  position: relative;
+}
+
+.actionFolder:hover {
+  cursor: pointer;
+  transition: 0.2ms;
+}
+
+.actionTerminal {
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+  outline: none;
+}
+
+.actionTerminal:hover {
   cursor: pointer;
   transition: 0.2ms;
 }
@@ -248,18 +262,6 @@ p {
   margin-inline-end: 0px;
   height: 7px;
   /* height: min-content; */
-}
-
-.terminalBtn {
-  width: 70px;
-  height: 30px;
-  margin: 5px;
-  border: 0.5px solid #495867;
-  border-radius: 7px;
-  font-size: 17px;
-  background: #495867;
-  color: #cae3fa;
-  outline: none;
 }
 
 #terminalDiv {

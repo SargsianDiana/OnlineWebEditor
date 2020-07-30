@@ -2,6 +2,8 @@ import fileObj from "./File.js";
 import folderObj from "./Folder.js";
 import collapseObj from "./Collapse.js";
 
+import terminalObj from "./Terminal.js";
+
 const createBtnImg = function (el, src, title, classList, cb) {
   const htmlEl = document.createElement(el);
   htmlEl.src = src;
@@ -25,7 +27,7 @@ createBtnImg("img", "./image/collapse.jpg", "Collapse", "actionCollapse", functi
 });
 
 createBtnImg("img", "./image/terminal.png", "Open terminal", "actionTerminal", function () {
-  return OpenTerminal();
+  return terminalObj.openTerminal();
 });
 
 export default 0;

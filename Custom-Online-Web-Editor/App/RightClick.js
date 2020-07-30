@@ -32,6 +32,21 @@ function getValue(){
           id = id.slice(1)
           adaRef = Fire.database().ref(`subMenu/${id}`);
         }
+        else if(id.includes('f')){
+          id = id.slice(1)
+          adaRef = Fire.database().ref(`Folder/${id}`);
+          Fire.database().ref('/subMenu/').once('value').then(function(snapshot) {
+                
+            for(let j = 1; j <= snapshot.numChildren(); j++){                
+               if(snapshot.child(j).val().text.folderId === `f${id}`){
+                let fId = snapshot.child(j).val().text.id.slice(1) 
+                adaRef = Fire.database().ref(`subMenu/${fId}`);
+                adaRef.remove()
+               }
+              
+            }
+          }) 
+        }
         
         adaRef.remove()
           .then(function(){

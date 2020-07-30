@@ -22,9 +22,9 @@ class MyList{
             let customUl = "";
             let folderArrays = [];
             
-            for(let i = 1; i <= snapshot.numChildren(); i++){ 
-                customUl +=  `<ul id=${snapshot.child(i).val().text.id}>`
-                customUl += `<li id=${snapshot.child(i).val().text.id} class='nestedList'>${snapshot.child(i).val().text.text}</li>`
+            for(let i = 1; i < snapshot.numChildren()+1; i++){ 
+                customUl +=  `<ul id=${snapshot.child(i).val().text.id} class='box'>`
+                customUl += `<li id=${snapshot.child(i).val().text.id} class='nestedList box'>${snapshot.child(i).val().text.text}</li>`
                 
                 
                 let folderId = snapshot.child(i).val().text.id
@@ -34,13 +34,26 @@ class MyList{
                    
 
             }
+
+           
            
             myLiList.innerHTML = customUl;
+
+            for(let i = 0; i < snapshot.numChildren(); i++){
+              document.getElementsByClassName('box')[i].addEventListener('contextmenu',function(ev){
+                  ev.preventDefault(); 
+                  inputBox.value = ev.target.id
+                  console.log( ev.clientX, ev.clientY );
+                  menu.style.top = `${ev.clientY - 20}px`;
+                  menu.style.left = `${ev.clientX - 20}px`;
+                  menu.classList.remove('off');
+              })
+          }
             
 
             Fire.database().ref('/subMenu/').once('value').then(function(snapshotOne) {
                 
-                for(let j = 1; j <= snapshotOne.numChildren(); j++){
+                for(let j = 1; j < snapshotOne.numChildren()+1; j++){
                     
                     let element = document.getElementById(snapshotOne.child(j).val().text.folderId)
                     element.innerHTML += `<li id=${snapshotOne.child(j).val().text.id} class='toggle box'>${snapshotOne.child(j).val().text.text}</li>`

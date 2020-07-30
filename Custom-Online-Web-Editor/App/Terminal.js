@@ -37,9 +37,8 @@ class Terminal {
   }
 
   closeTerminal() {
-    if (this.terminal) {
-      editor.removeChild(editor.childNodes[1]);
-    }
+      const close = document.getElementById('terminalDiv');
+      close.parentNode.removeChild(close);
   }
 
   // createFile() {

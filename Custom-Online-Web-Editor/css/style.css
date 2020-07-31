@@ -154,8 +154,15 @@ body {
 
 #logo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
+  /* align-items: flex-end; */
+  justify-content: flex-end;
+}
+
+#doubleLogo {
+  display: flex;
+  flex-direction: column;
   align-items: flex-end;
 }
 

@@ -115,19 +115,7 @@ body {
   background: #b3c3d1;
 }
 
-#tabs {
-  width: 100vw;
-  display: flex;
-  background: #ddefff;
-}
 
-#tabs_Item{
-  border-right:1px solid black;
-  padding: 6px;
-  align-self: center;
-  font-size: 16px;
-  background: #dddddd;
-}
 
 #editor {
   grid-area: editor;
@@ -306,4 +294,31 @@ p {
 .menu-item:active {
   color: #000;
   font-weight: 500;
+}
+
+#tabs {
+  width: 100vw;
+  display: flex;
+  background: #ddefff;
+}
+
+#tabs_Item{
+  position: relative;
+  
+  padding: 6px;
+  align-self: center;
+  font-size: 16px;
+  background: #dddddd;
+}
+
+#tabClose{
+  top:0;
+  margin: right;
+  position: absolute;
+  padding: 1px;
+  color:white;
+  background: darkred;
+  cursor: pointer;
+  font-size: 12px;
+  
 }

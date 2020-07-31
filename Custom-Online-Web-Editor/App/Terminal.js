@@ -10,12 +10,13 @@ class Terminal {
     this.terminal = true;
   }
 
-  openTerminal() {
-    const editor = document.getElementById('editor');
-    const div = document.createElement('div');
-    const btn = document.createElement('button');
+  openTerminal() {    
 
     if (this.terminal) {
+      const editor = document.getElementById('editor');
+      const div = document.createElement('div');
+      const btn = document.createElement('button');
+
       div.id = 'terminalDiv';
 
       const p = document.createElement('p');
@@ -31,8 +32,12 @@ class Terminal {
       div.append(txtArea);
       editor.append(div);
 
+      this.terminal = false;
+      
+    }
+    else{
+      this.closeTerminal();
       this.terminal = true;
-      btn.onclick = this.closeTerminal;
     }
   }
 

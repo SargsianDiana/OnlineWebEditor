@@ -140,7 +140,7 @@ class MyList{
             let box = document.getElementsByClassName('box');
             for(let i = 0;i < box.length; i++){
               box[i].addEventListener('click', function(ev){
-                Tab.createTab(ev.target.id);
+                Tab.createTab(ev.target.id,box.length);
               });
             }    
             

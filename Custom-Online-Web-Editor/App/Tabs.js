@@ -23,9 +23,18 @@ class Tab{
             createTabItem.id = `tab_${id}`
             let createTabClose = document.createElement('span')
             createTabClose.id = 'tabClose'
-            createTabClose.onclick = (ev) => {
-                document.getElementById(ev.target.parentNode.id).remove()
-                document.getElementById('tabs_item_txt').remove()
+            createTabClose.onclick = () => {
+                
+            let node = document.getElementsByClassName('tabs_Item')
+             for (let i = 0; i < node.length; i++) {
+                node[i].style.display = "none";
+              }
+              
+              let node1 = document.getElementsByClassName('tabContent')
+              for (let i = 0; i < node1.length; i++) {
+                 node1[i].style.display = "none";
+               }
+               this.tab = true;
             }
             createTabClose.innerHTML = 'x' 
             createTabItem.id = `tabs_item${id}`

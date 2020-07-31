@@ -1,6 +1,7 @@
 import Menu from './../firebase/menu.js';
 import Fire from './../firebase/config.js';
 import Submenu from '../firebase/submenu.js';
+import Tab from './Tabs.js';
 import MyList from './createMyList.js';
 
 class File {
@@ -14,9 +15,11 @@ class File {
     const li = document.createElement('li');
     // li.id = "forImages";
     li.className = 'box';
+    
     this.findFileType(fileName);
     const innerHtml = document.createTextNode(fileName);
     li.append(innerHtml);
+
     const element = document.querySelector('.activeOne');
 
     if (element === null) {
@@ -51,6 +54,14 @@ class File {
                 
                 });
             }    
+          })
+          .then(function(){
+            let box = document.getElementsByClassName('box');
+            for(let i = 0;i < box.length; i++){
+              box[i].addEventListener('click', function(ev){
+                Tab.createTab(ev.target.id)
+              });
+          }    
           })
     } else {
       const ref = firebase.database().ref('/subMenu/');

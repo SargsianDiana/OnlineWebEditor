@@ -1,5 +1,5 @@
 import Fire from "./../firebase/config.js"
-
+import Tab from './Tabs.js';
 
 class MyList{
     
@@ -136,6 +136,13 @@ class MyList{
                     menu.classList.remove('off');
                 })
             }
+
+            let box = document.getElementsByClassName('box');
+            for(let i = 0;i < box.length; i++){
+              box[i].addEventListener('click', function(ev){
+                Tab.createTab(ev.target.id);
+              });
+            }    
             
             
           });         

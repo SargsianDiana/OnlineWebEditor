@@ -116,9 +116,19 @@ body {
 }
 
 #tabs {
-  grid-area: tab;
+  width: 100vw;
+  display: flex;
   background: #ddefff;
 }
+
+#tabs_Item{
+  border-right:1px solid black;
+  padding: 6px;
+  align-self: center;
+  font-size: 16px;
+  background: #dddddd;
+}
+
 #editor {
   grid-area: editor;
   background: #495867;

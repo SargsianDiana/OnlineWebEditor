@@ -39,7 +39,7 @@ body {
     'header header header header header header header header'
     'folders tab tab tab tab tab tab tab'
     'folders editor editor editor editor editor editor editor';
-  grid-template-rows: repeat(auto-fill, 70px 35px 610px);
+  grid-template-rows: repeat(auto-fill, 70px 30px 610px);
 }
 
 #app > div {
@@ -72,7 +72,7 @@ body {
   width: 28px;
   height: 28px;
   position: relative;
-  animation: logo 7s infinite;
+  animation: logo 6s infinite;
   animation-timing-function: linear;
   animation-delay: 0s;
   margin: 3px;

@@ -59,6 +59,7 @@ class File {
               let id = `s${snapshot.numChildren() + 1}`;
               let activeId = document.querySelector('.active').id;
               li.id = id;
+              li.className = 'toggle';
               let subMenu = new Submenu(id, activeId, fileName);
 
             Fire.database()

@@ -88,15 +88,15 @@ class MyList{
               
                 let flag = false
 
-              let allToggleItem = (displayValue) => {
-                    const hideToggle = document.getElementsByClassName("toggle");
-       
-                    for(let i = 0; i < hideToggle.length; i++){
-                       hideToggle[i].style.display = displayValue;
-                    }        
-               }
+                let allToggleItem = (displayValue) => {
+                        const hideToggle = document.getElementsByClassName("toggle");
+        
+                        for(let i = 0; i < hideToggle.length; i++){
+                        hideToggle[i].style.display = displayValue;
+                        }        
+                }
 
-                const collapse = document.getElementsByClassName("actionBtn")[2] 
+                const collapse = document.getElementsByClassName("actionCollapse") 
                 collapse.onclick = () => {
                     if(!flag){
                         allToggleItem("none");

@@ -14,9 +14,15 @@ const createBtnImg = function (el, src, title, classList, cb) {
   div.append(htmlEl);
 };
 
-createBtnImg('img', './image/file.png', 'New file', 'actionFile', function () {
-  return fileObj.createInput();
-});
+createBtnImg(
+  'img',
+  './image/file.png', 
+  'New file', 
+  'actionFile', 
+  function () {
+    return fileObj.createInput();
+  }
+);
 
 createBtnImg(
   'img',

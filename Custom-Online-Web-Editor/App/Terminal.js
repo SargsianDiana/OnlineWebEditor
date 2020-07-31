@@ -24,6 +24,12 @@ class Terminal {
 
       btn.innerText = 'x';
       btn.id = 'CloseTerminal';
+
+      btn.onclick = () => {
+        this.closeTerminal();
+        this.terminal = true;
+      }
+
       txtArea.id = 'txtArea';
 
       p.innerText = 'Terminal';

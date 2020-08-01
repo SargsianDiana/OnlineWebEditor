@@ -4,51 +4,27 @@
   box-sizing: border-box;
 }
 
-body {
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  box-shadow: inset 0 0 5px #cae3fa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #36414b;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
   overflow-x: hidden;
 }
 
-#myList li {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  cursor: pointer; /* new property */
-}
-
-#myList {
-  margin-top: 80px;
-  margin-left: 30px;
-  display: flex;
-  flex-flow: column wrap;
-}
-
-/* ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-  } */
-
-#app {
-  display: grid;
-  grid-template-areas:
-    'header header header header header header header header'
-    'folders tab tab tab tab tab tab tab'
-    'folders editor editor editor editor editor editor editor';
-  grid-template-rows: repeat(auto-fill, 70px 30px 610px);
-}
-
 #app > div {
-  text-align: end;
-  font-size: 30px;
+  font-size: 23px;
 }
 
 #header {
-  grid-area: header;
   background: #36414b;
   display: flex;
   flex-direction: row;
@@ -71,7 +47,6 @@ body {
 .logo {
   width: 28px;
   height: 28px;
-  position: relative;
   animation: logo 6s infinite;
   animation-timing-function: linear;
   animation-delay: 0s;
@@ -90,8 +65,7 @@ body {
 #logo {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  /* align-items: flex-end; */
+  width: 100vw;
   justify-content: flex-end;
 }
 
@@ -102,32 +76,32 @@ body {
 }
 
 #imgLogo {
-  margin-left: 5px;
   width: 70px;
-  height: 70px;
+}
+
+#content {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
 }
 
 #folders {
-  display: grid;
-  grid-auto-flow: column;
+  display: flex;
   justify-content: end;
-  grid-area: folders;
+  position: relative;
   background: #b3c3d1;
 }
 
-
-
-#editor {
-  grid-area: editor;
-  background: #495867;
-}
+/* li {
+  color: #495867;
+} */
 
 .actionFile {
   width: 35px;
   height: 35px;
   margin: 5px;
   outline: none;
-  position: relative;
+  /* position: relative; */
 }
 
 .actionFile:hover {
@@ -178,8 +152,9 @@ body {
   background-color: rgb(229, 239, 248);
   height: min-content;
   position: absolute;
-  top: 18%;
-  margin: 10px 10px 10px 30px;
+  top: 7%;
+  margin: 10px 0px 10px 0px;
+  right: 3px;
   border: 1px solid #495867;
   border-radius: 5px;
   border-image: initial;
@@ -188,26 +163,21 @@ body {
   height: 23px;
 }
 
-li {
-  color: #495867;
-}
-
-p {
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  height: 7px;
-  /* height: min-content; */
+#editor {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  flex-direction: column;
+  background: #495867;
 }
 
 #terminalDiv {
-  /* display: none; */
-  /* border: 1px solid black; */
   width: 100%;
   height: 30%;
-  /* margin-top: 400px; */
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
   background: #36414b;
 }
 
@@ -220,7 +190,7 @@ p {
 #terminalDiv > textarea {
   resize: none;
   width: 100%;
-  height: 90%;
+  height: 85%;
   background-color: rgb(73, 88, 103);
   color: rgb(179, 195, 209);
   border-width: initial;
@@ -236,21 +206,63 @@ p {
   background-color: #f9572d;
   width: 20px;
   border-radius: 30%;
-  margin: 5px;
+  margin: 4px 5px 5px 6px;
   outline: none;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-  box-shadow: inset 0 0 5px #cae3fa;
+#tabs {
+  width: 100%;
+  display: flex;
+  background: #495867;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #36414b;
+.tabs_Item {
+  position: relative;
+  padding: 2px 0px 4px 4px;
+  align-self: start;
+  font-size: 15px;
+  background: #b3c3d1;
+  border-radius: 13px 2px;
+  outline: none;
+  width: 100px;
+  text-align: start;
+  color: #36414b;
 }
 
-/* ....................................................................... */
+#tabClose {
+    top: 0;
+    right: 2px;
+    margin: right;
+    position: absolute;
+    padding: 1px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    color: #495867;
+}
+
+#innerCode {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 66.5%;
+  background: #495867;
+}
+
+#innerCode > textarea {
+  resize: none;
+  width: 100%;
+  height: 98%;
+  background-color: #495867;
+  color: rgb(179, 195, 209);
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  outline: none;
+  padding-left: 3px;
+  border-top: 0.5px solid #36414b;
+}
 
 #nestedList #nestedLi {
   padding: 2px;
@@ -259,8 +271,8 @@ p {
 
 .active,
 .btn:hover {
-  background-color: #666;
-  color: white;
+  color: #36414b;
+  font-weight: bold;
 }
 
 .hideToggle {
@@ -278,10 +290,12 @@ p {
   list-style: none;
   position: fixed;
 }
+
 .menu.off {
   top: -200%;
   left: -200%;
 }
+
 .menu-item {
   height: 1.5rem;
   line-height: 1.5rem;
@@ -290,55 +304,24 @@ p {
   padding: 0 1rem;
   cursor: pointer;
 }
+
 .menu-item:hover,
 .menu-item:active {
   color: #000;
   font-weight: 500;
 }
 
-#tabs {
-  width: 100vw;
+#myList li {
+  list-style-type: none;
   display: flex;
-  background: #ddefff;
-}
-
-.tabs_Item{
-  position: relative;  
-  padding: 6px;
-  align-self: center;
-  font-size: 16px;
-  background: #dddddd;
-}
-
-#tabClose{
-  top:0;
-  margin: right;
-  position: absolute;
-  padding: 1px;
-  color:white;
-  background: darkred;
-  cursor: pointer;
-  font-size: 12px;
-  
-}
-
-#innerCode{
-  width: 100wh;
-  display: flex;
+  justify-content: center;
   flex-direction: column;
-  background: white;
+  cursor: pointer;
 }
 
-#innerCode > textarea {
-  resize: none;
-  width: 100%;
-  height: 90%;
-  background-color: white;
-  color: rgb(179, 195, 209);
-  border-width: initial;
-  border-style: none;
-  border-color: initial;
-  border-image: initial;
-  outline: none;
-  padding-left: 3px;
+#myList {
+  margin-top: 80px;
+  margin-left: 5px;
+  display: flex;
+  flex-flow: column wrap;
 }

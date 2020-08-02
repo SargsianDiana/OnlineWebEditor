@@ -1,12 +1,12 @@
 import fileObj from './File.js';
 import folderObj from './Folder.js';
 
-
 class Terminal {
   constructor() {
     this.terminal = true;
     this.history = [];
     this.txtArea = document.createElement('textarea');
+    //this.i = 5;
   }
 
   openTerminal() {
@@ -26,7 +26,7 @@ class Terminal {
       btn.onclick = () => {
         this.closeTerminal();
         this.terminal = true;
-      };
+      }
 
       this.txtArea.id = 'txtArea';
 
@@ -38,8 +38,8 @@ class Terminal {
 
       this.terminal = false;
 
-    } else {
-
+    }
+    else {
       this.closeTerminal();
       this.terminal = true;
     }
@@ -52,38 +52,27 @@ class Terminal {
 
   keyEnterCode = (e) => {
     if (e.keyCode == 13) {
+      e.preventDefault();
       if (this.txtArea.value.length >= 7 && this.txtArea.value.includes("touch")) {
         this.history.push(this.txtArea.value);
-        const str = this.txtArea.value.slice(5)
+        const str = this.txtArea.value.slice(5);    // i = 5
         if (this.txtArea.value.includes('js') || this.txtArea.value.includes('css') || this.txtArea.value.includes('html')) {
           fileObj.createFile(str);
+          //this.i += 1;
         }
         else {
-          folderObj.createFolder(str)
+          folderObj.createFolder(str);
+          //this.i += 1;
         }
         this.txtArea.value = "";
       }
+
+      // else {
+      //   this.txtArea.value = "Wrong Command";
+      // }
     }
   }
 
-  // createInput() {             // added
-  //   if (!this.executed) {
-  //     this.executed = true;
-  //     const input = document.createElement('input');
-
-  //     input.type = 'text';
-  //     input.id = 'fileBox';
-  //     input.placeholder = 'Create file';
-  //     input.autocomplete = 'off';
-  //     input.onkeypress = () => {
-  //       return this.keyEnterCode(event);
-  //     };
-
-  //     const div = document.getElementById('folders');
-  //     div.append(input);
-  //     console.log('createInput');
-  //   }
-  // }
 }
 
 export default new Terminal();

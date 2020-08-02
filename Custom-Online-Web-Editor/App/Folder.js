@@ -77,7 +77,7 @@ class Folder {
 
   createInput() {
     if (!this.executed) {
-      this.executed = true;
+      // this.executed = true;
       const input = document.createElement('input');
 
       input.type = 'text';
@@ -89,6 +89,7 @@ class Folder {
       };
 
       const div = document.getElementById('inputEl');
+      if(div.childElementCount<1)
       div.append(input);
     }
   }

@@ -130,7 +130,7 @@ class File {
 
   createInput() {
     if (!this.executed) {
-      this.executed = !this.executed;
+      // this.executed = !this.executed;
       const input = document.createElement('input');
 
       input.type = 'text';
@@ -142,6 +142,7 @@ class File {
       };
 
       const div = document.getElementById('inputEl');
+      if(div.childElementCount<1)
       div.append(input);
     }
   }

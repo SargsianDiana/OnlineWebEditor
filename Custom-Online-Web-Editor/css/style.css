@@ -87,9 +87,25 @@
 
 #folders {
   display: flex;
-  justify-content: end;
+  flex-direction: column;
   position: relative;
   background: #b3c3d1;
+}
+
+#parentEl {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#inputEl {
+  display: flex;
+}
+
+#parentList {
+  display: flex;
+  flex-direction: column;
 }
 
 /* li {
@@ -150,10 +166,7 @@
 
 #fileBox {
   background-color: rgb(229, 239, 248);
-  height: min-content;
-  position: absolute;
-  top: 7%;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px 10px 5px;
   right: 3px;
   border: 1px solid #495867;
   border-radius: 5px;
@@ -218,13 +231,12 @@
 
 .tabs_Item {
   position: relative;
-  padding: 2px 0px 4px 4px;
+  padding: 2px 20px 4px 4px;
   align-self: start;
   font-size: 15px;
   background: #b3c3d1;
   border-radius: 13px 2px;
   outline: none;
-  width: 100px;
   text-align: start;
   color: #36414b;
 }
@@ -280,15 +292,14 @@
 }
 
 .menu {
-  width: 12rem;
-  height: 4.5rem;
-  background-color: #f4f4f4;
-  color: #333;
-  border: 1px solid #aaa;
-  box-shadow: 2px 2px 2px #999;
-  border-radius: 0.2rem;
+  width: 70px;
+  height: 28px;
+  background-color: #495867;
+  padding: 5px;
+  border-radius: 7px;
   list-style: none;
   position: fixed;
+  text-align: center;
 }
 
 .menu.off {
@@ -297,31 +308,45 @@
 }
 
 .menu-item {
-  height: 1.5rem;
-  line-height: 1.5rem;
-  font-size: 1rem;
-  font-weight: 100;
-  padding: 0 1rem;
+  font-size: 18px;
+  color: #b3c3d1;
   cursor: pointer;
 }
 
-.menu-item:hover,
+/* .menu-item:hover,
 .menu-item:active {
-  color: #000;
-  font-weight: 500;
-}
+  color: #b3c3d1;
+  font-weight: bold;
+} */
 
 #myList li {
   list-style-type: none;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: start;
+  flex-direction: row;
   cursor: pointer;
+  color: #36414b;
 }
 
 #myList {
-  margin-top: 80px;
   margin-left: 5px;
   display: flex;
   flex-flow: column wrap;
+}
+
+#htmlType {
+  color: #f9572d;
+  margin-right: 4px;
+  font-weight: bold;
+}
+
+#cssType {
+  color: #239999;
+  margin-right: 4px;
+  font-weight: bold;
+}
+
+#jsType {
+  color: rgb(250, 250, 8);
+  margin-right: 4px;
 }

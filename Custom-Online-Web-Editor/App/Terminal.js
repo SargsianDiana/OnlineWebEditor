@@ -10,8 +10,7 @@ class Terminal {
     this.terminal = true;
   }
 
-  openTerminal() {    
-
+  openTerminal() {
     if (this.terminal) {
       const editor = document.getElementById('editor');
       const div = document.createElement('div');
@@ -28,7 +27,7 @@ class Terminal {
       btn.onclick = () => {
         this.closeTerminal();
         this.terminal = true;
-      }
+      };
 
       txtArea.id = 'txtArea';
 
@@ -39,17 +38,15 @@ class Terminal {
       editor.append(div);
 
       this.terminal = false;
-      
-    }
-    else{
+    } else {
       this.closeTerminal();
       this.terminal = true;
     }
   }
 
   closeTerminal() {
-      const close = document.getElementById('terminalDiv');
-      close.parentNode.removeChild(close);
+    const close = document.getElementById('terminalDiv');
+    close.parentNode.removeChild(close);
   }
 
   // createFile() {

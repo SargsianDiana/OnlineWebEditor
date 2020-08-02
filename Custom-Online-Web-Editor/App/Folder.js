@@ -88,9 +88,8 @@ class Folder {
         return this.keyEnterCode(event);
       };
 
-      const div = document.getElementById('folders');
+      const div = document.getElementById('inputEl');
       div.append(input);
-      console.log('createInput');
     }
   }
 }

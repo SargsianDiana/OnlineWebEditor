@@ -5,13 +5,14 @@ import collapseObj from './Collapse.js';
 import terminalObj from './Terminal.js';
 
 const createBtnImg = function (el, src, title, classList, cb) {
+  const pEl = document.getElementById('parentEl');
   const htmlEl = document.createElement(el);
   htmlEl.src = src;
   htmlEl.title = title;
   htmlEl.classList = classList;
   htmlEl.onclick = cb;
-  const div = document.getElementById('folders');
-  div.append(htmlEl);
+  // const div = document.getElementById('folders');
+  pEl.append(htmlEl);
 };
 
 createBtnImg(

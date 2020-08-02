@@ -16,9 +16,9 @@ const createBtnImg = function (el, src, title, classList, cb) {
 
 createBtnImg(
   'img',
-  './image/file.png', 
-  'New file', 
-  'actionFile', 
+  './image/file.png',
+  'New file',
+  'actionFile',
   function () {
     return fileObj.createInput();
   }
@@ -53,5 +53,8 @@ createBtnImg(
     return terminalObj.openTerminal();
   }
 );
+
+
+terminalObj.txtArea.onkeypress = () => terminalObj.keyEnterCode(event);
 
 export default 0;

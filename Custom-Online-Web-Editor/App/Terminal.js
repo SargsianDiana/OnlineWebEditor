@@ -1,4 +1,5 @@
 import fileObj from './File.js';
+import folderObj from './Folder.js';
 
 // const txtarea = document.getElementById("firstLine");
 // const txtId = txtarea.firstLine;
@@ -8,9 +9,11 @@ import fileObj from './File.js';
 class Terminal {
   constructor() {
     this.terminal = true;
+    this.history = [];
+    this.txtArea = document.createElement('textarea');
   }
 
-  openTerminal() {    
+  openTerminal() {
 
     if (this.terminal) {
       const editor = document.getElementById('editor');
@@ -20,7 +23,6 @@ class Terminal {
       div.id = 'terminalDiv';
 
       const p = document.createElement('p');
-      const txtArea = document.createElement('textarea');
 
       btn.innerText = 'x';
       btn.id = 'CloseTerminal';
@@ -30,53 +32,61 @@ class Terminal {
         this.terminal = true;
       }
 
-      txtArea.id = 'txtArea';
+      this.txtArea.id = 'txtArea';
 
       p.innerText = 'Terminal';
       p.append(btn);
       div.append(p);
-      div.append(txtArea);
+      div.append(this.txtArea);
       editor.append(div);
 
       this.terminal = false;
-      
+
     }
-    else{
+    else {
       this.closeTerminal();
       this.terminal = true;
     }
   }
 
   closeTerminal() {
-      const close = document.getElementById('terminalDiv');
-      close.parentNode.removeChild(close);
+    const close = document.getElementById('terminalDiv');
+    close.parentNode.removeChild(close);
   }
 
-  // createFile() {
-  //     const txtArea = document.getElementById('txtArea');
-  //     return fileObj.createInput('txtArea')
-  // }
+  keyEnterCode = (e) => {
+    if (e.keyCode == 13) {
+      if (this.txtArea.value.length >= 7 && this.txtArea.value.includes("touch")) {
+        this.history.push(this.txtArea.value);
+        const str = this.txtArea.value.slice(5)
+        if (this.txtArea.value.includes('js') || this.txtArea.value.includes('css') || this.txtArea.value.includes('html')) {
+          fileObj.createFile(str);
+        }
+        else {
+          folderObj.createFolder(str)
+        }
+        this.txtArea.value = "";
+      }
+    }
+  }
 
-  // findFileType(typeName) {
-  //     let str = typeName.split(".");
-  //     const htmlEl = document.createElement("img");
-  //     const li = document.getElementById("forImages")
-  //     if (str[1] === "html") {
+  // createInput() {             // added
+  //   if (!this.executed) {
+  //     this.executed = true;
+  //     const input = document.createElement('input');
 
-  //     }
-  // }
+  //     input.type = 'text';
+  //     input.id = 'fileBox';
+  //     input.placeholder = 'Create file';
+  //     input.autocomplete = 'off';
+  //     input.onkeypress = () => {
+  //       return this.keyEnterCode(event);
+  //     };
 
-  // commandSubmit(e) {
-  //     if (e.keyCode == 13) {
-  //         let inputEl = document.getElementById("fileBox");
-  //         fileObj.createFile(inputEl.value);
-  //         inputEl.remove()
-  //         fileObj.executed = false;
-
-  //         const textArea = document.createElement('textarea');
-  //         txtId += 1;
-  //         textArea.id = txtId;
-  //     }
+  //     const div = document.getElementById('folders');
+  //     div.append(input);
+  //     console.log('createInput');
+  //   }
   // }
 }
 

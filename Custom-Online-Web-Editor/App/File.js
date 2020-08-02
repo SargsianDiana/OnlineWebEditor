@@ -15,7 +15,7 @@ class File {
     const li = document.createElement('li');
     // li.id = "forImages";
     li.className = 'box';
-    
+
     this.findFileType(fileName);
     const innerHtml = document.createTextNode(fileName);
     li.append(innerHtml);
@@ -36,65 +36,65 @@ class File {
           .set({
             text: menu,
           });
-          
-          })
-          .then(function(menu = null){
-              menu = document.querySelector('.menu');
-              menu.classList.add('off');
-              let box = document.getElementsByClassName('box');
-              for(let i = 0;i < box.length; i++){
-                box[i].addEventListener('contextmenu', function(ev){
-                  ev.preventDefault(); 
-                  //show the custom menu
-                  inputBox.value = ev.target.id
-                  console.log( ev.clientX, ev.clientY );
-                  menu.style.top = `${ev.clientY - 20}px`;
-                  menu.style.left = `${ev.clientX - 20}px`;
-                  menu.classList.remove('off');
-                
-                });
-            }    
-          })
-          .then(function(){
-            let box = document.getElementsByClassName('box');
-            for(let i = 0;i < box.length; i++){
-              box[i].addEventListener('click', function(ev){
-                Tab.createTab(ev.target.id)
-              });
-          }    
-          })
+
+      })
+        .then(function (menu = null) {
+          menu = document.querySelector('.menu');
+          menu.classList.add('off');
+          let box = document.getElementsByClassName('box');
+          for (let i = 0; i < box.length; i++) {
+            box[i].addEventListener('contextmenu', function (ev) {
+              ev.preventDefault();
+              //show the custom menu
+              inputBox.value = ev.target.id
+              console.log(ev.clientX, ev.clientY);
+              menu.style.top = `${ev.clientY - 20}px`;
+              menu.style.left = `${ev.clientX - 20}px`;
+              menu.classList.remove('off');
+
+            });
+          }
+        })
+        .then(function () {
+          let box = document.getElementsByClassName('box');
+          for (let i = 0; i < box.length; i++) {
+            box[i].addEventListener('click', function (ev) {
+              Tab.createTab(ev.target.id)
+            });
+          }
+        })
     } else {
       const ref = firebase.database().ref('/subMenu/');
 
-            ref.once('value').then(function (snapshot) {
-              let id = `s${snapshot.numChildren() + 1}`;
-              let activeId = document.querySelector('.active').id;
-              li.id = id;
-              li.className = 'toggle';
-              let subMenu = new Submenu(id, activeId, fileName);
+      ref.once('value').then(function (snapshot) {
+        let id = `s${snapshot.numChildren() + 1}`;
+        let activeId = document.querySelector('.active').id;
+        li.id = id;
+        li.className = 'toggle';
+        let subMenu = new Submenu(id, activeId, fileName);
 
-            Fire.database()
-              .ref(`subMenu/${snapshot.numChildren() + 1}`)
-              .set({
-                text: subMenu,
-              });
-          })
-          .then(function(menu = null){
-            menu = document.querySelector('.menu');
-            menu.classList.add('off');
-            let box = document.getElementsByClassName('box');
-            for(let i = 0;i < box.length; i++){
-              box[i].addEventListener('contextmenu', function(ev){
-                ev.preventDefault(); 
-                //show the custom menu
-                inputBox.value = ev.target.id
-                console.log( ev.clientX, ev.clientY );
-                menu.style.top = `${ev.clientY - 20}px`;
-                menu.style.left = `${ev.clientX - 20}px`;
-                menu.classList.remove('off');
-              
-              });
-            }    
+        Fire.database()
+          .ref(`subMenu/${snapshot.numChildren() + 1}`)
+          .set({
+            text: subMenu,
+          });
+      })
+        .then(function (menu = null) {
+          menu = document.querySelector('.menu');
+          menu.classList.add('off');
+          let box = document.getElementsByClassName('box');
+          for (let i = 0; i < box.length; i++) {
+            box[i].addEventListener('contextmenu', function (ev) {
+              ev.preventDefault();
+              //show the custom menu
+              inputBox.value = ev.target.id
+              console.log(ev.clientX, ev.clientY);
+              menu.style.top = `${ev.clientY - 20}px`;
+              menu.style.left = `${ev.clientX - 20}px`;
+              menu.classList.remove('off');
+
+            });
+          }
         })
 
       element.append(li);
@@ -102,13 +102,19 @@ class File {
   }
 
   findFileType(typeName) {
-    let str = typeName.split('.');
-    const htmlEl = document.createElement('img');
-    const li = document.getElementById('forImages');
-    if (str[1] === 'html') {
-      // htmlEl.src = "./image/html.png";
-      // li.innerHTML = "<img src='./image/html.png' />";
-    }
+    // let str = typeName.split('.');
+    // const li = document.querySelector('box');
+    // const p = document.createElement('p');
+    // if (str[1] === 'html') {
+    //   p.innerText = "<>";
+    // }
+    // else if (str[1] === "css") {
+    //   p.innerText = "#";
+    // }
+    // else if (str[1] === "js") {
+    //   p.innerText = "js";
+    // }
+    // li.append(p);
   }
 
   keyEnterCode(e) {

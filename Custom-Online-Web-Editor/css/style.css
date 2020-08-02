@@ -40,7 +40,7 @@
   font-size: 23px;
   margin-top: 43px;
   color: rgb(245, 210, 110);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-style: italic;
 }
 
@@ -101,11 +101,14 @@
 
 #inputEl {
   display: flex;
+  justify-content: flex-end;
+  margin-right: 6.5px;
 }
 
 #parentList {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 /* li {
@@ -242,15 +245,15 @@
 }
 
 #tabClose {
-    top: 0;
-    right: 2px;
-    margin: right;
-    position: absolute;
-    padding: 1px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    color: #495867;
+  top: 0;
+  right: 2px;
+  margin: right;
+  position: absolute;
+  padding: 1px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  color: #495867;
 }
 
 #innerCode {

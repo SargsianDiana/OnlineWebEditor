@@ -111,16 +111,11 @@
   overflow-y: scroll;
 }
 
-/* li {
-  color: #495867;
-} */
-
 .actionFile {
   width: 35px;
   height: 35px;
   margin: 5px;
   outline: none;
-  /* position: relative; */
 }
 
 .actionFile:hover {
@@ -315,12 +310,6 @@
   color: #b3c3d1;
   cursor: pointer;
 }
-
-/* .menu-item:hover,
-.menu-item:active {
-  color: #b3c3d1;
-  font-weight: bold;
-} */
 
 #myList li {
   list-style-type: none;

@@ -1,6 +1,15 @@
-import Fire from '../firebase/config.js';
-import Tab from './Tabs.js';
-import File from './File.js';
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
+/* eslint-disable no-loop-func */
+/* eslint-disable no-shadow */
+/* eslint-disable func-names */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/extensions */
+import Fire from "../firebase/config.js";
+import Tab from "./Tabs.js";
+import File from "./File.js";
 
 class MyList {
   constructor() {
@@ -8,17 +17,17 @@ class MyList {
   }
 
   createMyList() {
-    const myUlList = document.getElementById('myList');
-    const myLiList = document.getElementById('myFolderLi');
-    const menu = document.querySelector('.menu');
-    menu.classList.add('off');
+    const myUlList = document.getElementById("myList");
+    const myLiList = document.getElementById("myFolderLi");
+    const menu = document.querySelector(".menu");
+    menu.classList.add("off");
 
     Fire.database()
-      .ref('/Folder/')
-      .once('value')
+      .ref("/Folder/")
+      .once("value")
       .then(function (snapshot) {
-        let customUl = '';
-        let folderArrays = [];
+        let customUl = "";
+        const folderArrays = [];
 
         snapshot.forEach(function (snapshot) {
           customUl += `<ul id=${snapshot.val().text.id} class='box'>`;
@@ -26,33 +35,33 @@ class MyList {
             snapshot.val().text.id
           } class='nestedList box'>${snapshot.val().text.text}</li>`;
 
-          let folderId = snapshot.val().text.id;
+          const folderId = snapshot.val().text.id;
           folderArrays.push(folderId);
 
-          customUl += '</ul>';
+          customUl += "</ul>";
         });
 
         myLiList.innerHTML = customUl;
 
-        for (let i = 0; i < snapshot.numChildren(); i++) {
+        for (let i = 0; i < snapshot.numChildren(); i += 1) {
           document
-            .getElementsByClassName('box')
-            [i].addEventListener('contextmenu', function (ev) {
+            .getElementsByClassName("box")
+            [i].addEventListener("contextmenu", function (ev) {
               ev.preventDefault();
               inputBox.value = ev.target.id;
               console.log(ev.clientX, ev.clientY);
               menu.style.top = `${ev.clientY - 20}px`;
               menu.style.left = `${ev.clientX - 20}px`;
-              menu.classList.remove('off');
+              menu.classList.remove("off");
             });
         }
 
         Fire.database()
-          .ref('/subMenu/')
-          .once('value')
+          .ref("/subMenu/")
+          .once("value")
           .then(function (snapshotOne) {
             snapshotOne.forEach(function (snapshotOne) {
-              let element = document.getElementById(
+              const element = document.getElementById(
                 snapshotOne.val().text.folderId
               );
               element.innerHTML += `<li id=${
@@ -62,49 +71,49 @@ class MyList {
               )}</li>`;
             });
 
-            const nestedList = document.getElementsByClassName('nestedList');
-            for (let index = 0; index < nestedList.length; index++) {
+            const nestedList = document.getElementsByClassName("nestedList");
+            for (let index = 0; index < nestedList.length; index += 1) {
               nestedList[index].onclick = (e) => {
-                const element = document.querySelector('.active');
+                const element = document.querySelector(".active");
                 if (element !== null) {
-                  element.classList.remove('active');
-                  element.parentNode.classList.remove('activeOne');
+                  element.classList.remove("active");
+                  element.parentNode.classList.remove("activeOne");
                 }
-                const innerT = e.target.classList.add('active');
-                e.target.parentNode.classList.add('activeOne');
+                const innerT = e.target.classList.add("active");
+                e.target.parentNode.classList.add("activeOne");
               };
             }
 
-            for (let i = 0; i < snapshotOne.numChildren(); i++) {
+            for (let i = 0; i < snapshotOne.numChildren(); i += 1) {
               document
-                .getElementsByClassName('box')
-                [i].addEventListener('contextmenu', function (ev) {
+                .getElementsByClassName("box")
+                [i].addEventListener("contextmenu", function (ev) {
                   ev.preventDefault();
                   inputBox.value = ev.target.id;
                   console.log(ev.clientX, ev.clientY);
                   menu.style.top = `${ev.clientY - 20}px`;
                   menu.style.left = `${ev.clientX - 20}px`;
-                  menu.classList.remove('off');
+                  menu.classList.remove("off");
                 });
             }
 
             let flag = false;
 
-            let allToggleItem = (displayValue) => {
-              const hideToggle = document.getElementsByClassName('toggle');
+            const allToggleItem = (displayValue) => {
+              const hideToggle = document.getElementsByClassName("toggle");
 
-              for (let i = 0; i < hideToggle.length; i++) {
+              for (let i = 0; i < hideToggle.length; i += 1) {
                 hideToggle[i].style.display = displayValue;
               }
             };
 
-            const collapse = document.getElementsByClassName('actionCollapse');
+            const collapse = document.getElementsByClassName("actionCollapse");
             collapse.onclick = () => {
               if (!flag) {
-                allToggleItem('none');
+                allToggleItem("none");
                 flag = true;
               } else {
-                allToggleItem('block');
+                allToggleItem("block");
                 flag = false;
               }
             };
@@ -112,8 +121,8 @@ class MyList {
       });
 
     Fire.database()
-      .ref('/Menu1/')
-      .once('value')
+      .ref("/Menu1/")
+      .once("value")
       .then(function (snapshotTwo) {
         snapshotTwo.forEach(function (snapshotTwo) {
           myUlList.innerHTML += `<li id=${snapshotTwo.val().text.id}
@@ -122,22 +131,22 @@ class MyList {
            )}</li>`;
         });
 
-        for (let i = 0; i < snapshotTwo.numChildren(); i++) {
+        for (let i = 0; i < snapshotTwo.numChildren(); i += 1) {
           document
-            .getElementsByClassName('box')
-            [i].addEventListener('contextmenu', function (ev) {
+            .getElementsByClassName("box")
+            [i].addEventListener("contextmenu", function (ev) {
               ev.preventDefault();
               inputBox.value = ev.target.id;
               console.log(ev.clientX, ev.clientY);
               menu.style.top = `${ev.clientY - 20}px`;
               menu.style.left = `${ev.clientX - 20}px`;
-              menu.classList.remove('off');
+              menu.classList.remove("off");
             });
         }
 
-        let box = document.getElementsByClassName('box');
-        for (let i = 0; i < box.length; i++) {
-          box[i].addEventListener('click', function (ev) {
+        const box = document.getElementsByClassName("box");
+        for (let i = 0; i < box.length; i += 1) {
+          box[i].addEventListener("click", function (ev) {
             Tab.createTab(ev.target.id, box.length);
           });
         }

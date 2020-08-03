@@ -1,41 +1,47 @@
-import Fire from './../firebase/config.js';
-import MyList from './createMyList.js';
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
+/* eslint-disable func-names */
+/* eslint-disable import/extensions */
+import Fire from "../firebase/config.js";
+import MyList from "./createMyList.js";
 
 let menu = null;
-document.addEventListener('DOMContentLoaded', function () {
-  menu = document.querySelector('.menu');
-  menu.classList.add('off');
+document.addEventListener("DOMContentLoaded", function () {
+  menu = document.querySelector(".menu");
+  menu.classList.add("off");
 
-  let box = document.getElementsByClassName('box');
-  for (let i = 0; i < box.length; i++) {
-    box[i].addEventListener('contextmenu', showmenu);
+  const box = document.getElementsByClassName("box");
+  for (let i = 0; i < box.length; i += 1) {
+    box[i].addEventListener("contextmenu", showmenu);
   }
 
-  menu.addEventListener('mouseleave', hidemenu);
+  menu.addEventListener("mouseleave", hidemenu);
 
   getValue();
 });
 
 function getValue() {
-  document.getElementById('setValue').onclick = function () {
-    let id = document.getElementById(inputBox.value).id;
+  document.getElementById("setValue").onclick = function () {
+    let { id } = document.getElementById(inputBox.value);
     let adaRef = null;
-    if (id.includes('m')) {
+    if (id.includes("m")) {
       id = id.slice(1);
       adaRef = Fire.database().ref(`Menu1/${id}`);
-    } else if (id.includes('s')) {
+    } else if (id.includes("s")) {
       id = id.slice(1);
       adaRef = Fire.database().ref(`subMenu/${id}`);
-    } else if (id.includes('f')) {
+    } else if (id.includes("f")) {
       id = id.slice(1);
       adaRef = Fire.database().ref(`Folder/${id}`);
       Fire.database()
-        .ref('/subMenu/')
-        .once('value')
+        .ref("/subMenu/")
+        .once("value")
         .then(function (snapshot) {
-          for (let j = 1; j <= snapshot.numChildren(); j++) {
+          for (let j = 1; j <= snapshot.numChildren(); j += 1) {
             if (snapshot.child(j).val().text.folderId === `f${id}`) {
-              let fId = snapshot.child(j).val().text.id.slice(1);
+              const fId = snapshot.child(j).val().text.id.slice(1);
               adaRef = Fire.database().ref(`subMenu/${fId}`);
               adaRef.remove();
             }
@@ -46,18 +52,18 @@ function getValue() {
     adaRef
       .remove()
       .then(function () {
-        document.getElementById('myList').innerHTML =
+        document.getElementById("myList").innerHTML =
           "<li id='myFolderLi'></li>";
       })
       .then(function () {
-        let myList = new MyList();
+        const myList = new MyList();
         myList.createMyList();
       })
       .then(function () {
-        console.log('Remove succeeded.');
+        console.log("Remove succeeded.");
       })
       .catch(function (error) {
-        console.log('Remove failed: ' + error.message);
+        console.log(`Remove failed: ${error.message}`);
       });
   };
 }
@@ -68,13 +74,13 @@ function showmenu(ev) {
   console.log(ev.clientX, ev.clientY);
   menu.style.top = `${ev.clientY - 20}px`;
   menu.style.left = `${ev.clientX - 20}px`;
-  menu.classList.remove('off');
+  menu.classList.remove("off");
 }
 
 function hidemenu(ev) {
-  menu.classList.add('off');
-  menu.style.top = '-200%';
-  menu.style.left = '-200%';
+  menu.classList.add("off");
+  menu.style.top = "-200%";
+  menu.style.left = "-200%";
 }
 
 export default 0;

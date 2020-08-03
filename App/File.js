@@ -1,8 +1,20 @@
-import Menu from '../firebase/menu.js';
-import Fire from '../firebase/config.js';
-import Submenu from '../firebase/submenu.js';
-import Tab from './Tabs.js';
-import MyList from './createMyList.js';
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-cycle */
+/* eslint-disable func-names */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
+/* eslint-disable no-loop-func */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable consistent-return */
+/* eslint-disable quotes */
+/* eslint-disable class-methods-use-this */
+import Menu from "../firebase/menu.js";
+import Fire from "../firebase/config.js";
+import Submenu from "../firebase/submenu.js";
+import Tab from "./Tabs.js";
+import MyList from "./createMyList.js";
 
 class File {
   constructor(name, text) {
@@ -12,28 +24,28 @@ class File {
   }
 
   createFile(fileName) {
-    const li = document.createElement('li');
-    li.className = 'box';
+    const li = document.createElement("li");
+    li.className = "box";
 
     this.findFileType(fileName);
     const innerHtml = document.createTextNode(fileName);
-    let elType = this.findFileType(fileName);
+    const elType = this.findFileType(fileName);
     li.innerHTML = elType;
     li.append(innerHtml);
 
-    const element = document.querySelector('.activeOne');
+    const element = document.querySelector(".activeOne");
 
     if (element === null) {
-      document.getElementById('myList').append(li);
+      document.getElementById("myList").append(li);
 
-      const ref = firebase.database().ref('/Menu1/');
+      const ref = firebase.database().ref("/Menu1/");
 
       ref
-        .once('value')
+        .once("value")
         .then(function (snapshot) {
-          let id = `m${snapshot.numChildren() + 1}`;
+          const id = `m${snapshot.numChildren() + 1}`;
           li.id = id;
-          let menu = new Menu(id, fileName);
+          const menu = new Menu(id, fileName);
           Fire.database()
             .ref(`Menu1/${snapshot.numChildren() + 1}`)
             .set({
@@ -41,39 +53,39 @@ class File {
             });
         })
         .then(function (menu = null) {
-          menu = document.querySelector('.menu');
-          menu.classList.add('off');
-          let box = document.getElementsByClassName('box');
-          for (let i = 0; i < box.length; i++) {
-            box[i].addEventListener('contextmenu', function (ev) {
+          menu = document.querySelector(".menu");
+          menu.classList.add("off");
+          const box = document.getElementsByClassName("box");
+          for (let i = 0; i < box.length; i += 1) {
+            box[i].addEventListener("contextmenu", function (ev) {
               ev.preventDefault();
               inputBox.value = ev.target.id;
               console.log(ev.clientX, ev.clientY);
               menu.style.top = `${ev.clientY - 20}px`;
               menu.style.left = `${ev.clientX - 20}px`;
-              menu.classList.remove('off');
+              menu.classList.remove("off");
             });
           }
         })
         .then(function () {
-          let box = document.getElementsByClassName('box');
-          for (let i = 0; i < box.length; i++) {
-            box[i].addEventListener('click', function (ev) {
+          const box = document.getElementsByClassName("box");
+          for (let i = 0; i < box.length; i += 1) {
+            box[i].addEventListener("click", function (ev) {
               Tab.createTab(ev.target.id);
             });
           }
         });
     } else {
-      const ref = firebase.database().ref('/subMenu/');
+      const ref = firebase.database().ref("/subMenu/");
 
       ref
-        .once('value')
+        .once("value")
         .then(function (snapshot) {
-          let id = `s${snapshot.numChildren() + 1}`;
-          let activeId = document.querySelector('.active').id;
+          const id = `s${snapshot.numChildren() + 1}`;
+          const activeId = document.querySelector(".active").id;
           li.id = id;
-          li.className = 'toggle';
-          let subMenu = new Submenu(id, activeId, fileName);
+          li.className = "toggle";
+          const subMenu = new Submenu(id, activeId, fileName);
 
           Fire.database()
             .ref(`subMenu/${snapshot.numChildren() + 1}`)
@@ -82,17 +94,17 @@ class File {
             });
         })
         .then(function (menu = null) {
-          menu = document.querySelector('.menu');
-          menu.classList.add('off');
-          let box = document.getElementsByClassName('box');
-          for (let i = 0; i < box.length; i++) {
-            box[i].addEventListener('contextmenu', function (ev) {
+          menu = document.querySelector(".menu");
+          menu.classList.add("off");
+          const box = document.getElementsByClassName("box");
+          for (let i = 0; i < box.length; i += 1) {
+            box[i].addEventListener("contextmenu", function (ev) {
               ev.preventDefault();
               inputBox.value = ev.target.id;
               console.log(ev.clientX, ev.clientY);
               menu.style.top = `${ev.clientY - 20}px`;
               menu.style.left = `${ev.clientX - 20}px`;
-              menu.classList.remove('off');
+              menu.classList.remove("off");
             });
           }
         });
@@ -102,23 +114,25 @@ class File {
   }
 
   findFileType(typeName) {
-    let elType = '';
-    let str = typeName.split('.');
-    if (str[1] === 'html') {
+    let elType = "";
+    const str = typeName.split(".");
+    if (str[1] === "html") {
       elType = '<span id="htmlType"> < > </span>';
       return elType;
-    } else if (str[1] === 'css') {
+    }
+    if (str[1] === "css") {
       elType = '<span id="cssType"> # </span>';
       return elType;
-    } else if (str[1] === 'js') {
+    }
+    if (str[1] === "js") {
       elType = '<span id="jsType"> JS </span>';
       return elType;
     }
   }
 
   keyEnterCode(e) {
-    if (e.keyCode == 13) {
-      let inputEl = document.getElementById('fileBox');
+    if (e.keyCode === 13) {
+      const inputEl = document.getElementById("fileBox");
       this.createFile(inputEl.value);
       inputEl.remove();
       this.executed = false;
@@ -127,31 +141,33 @@ class File {
 
   createInput() {
     if (!this.executed) {
-      const input = document.createElement('input');
+      const input = document.createElement("input");
 
-      input.type = 'text';
-      input.id = 'fileBox';
-      input.placeholder = 'Create file';
-      input.autocomplete = 'off';
+      input.type = "text";
+      input.id = "fileBox";
+      input.placeholder = "Create file";
+      input.autocomplete = "off";
       input.onkeypress = () => {
         return this.keyEnterCode(event);
       };
 
-      const div = document.getElementById('inputEl');
+      const div = document.getElementById("inputEl");
       if (div.childElementCount < 1) div.append(input);
     }
   }
 
   findFireFileTypes(typeName) {
-    let elType = '';
-    let str = typeName.split('.');
-    if (str[1] === 'html') {
+    let elType = "";
+    const str = typeName.split(".");
+    if (str[1] === "html") {
       elType = '<span id="htmlType"> < > </span>';
       return elType + typeName;
-    } else if (str[1] === 'css') {
+    }
+    if (str[1] === "css") {
       elType = '<span id="cssType"> # </span>';
       return elType + typeName;
-    } else if (str[1] === 'js') {
+    }
+    if (str[1] === "js") {
       elType = '<span id="jsType"> JS </span>';
       return elType + typeName;
     }

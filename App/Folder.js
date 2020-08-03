@@ -10,41 +10,41 @@ class Folder {
   createNestedUl(li, folderName) {
     this.flag = true;
     const ul = document.createElement('ul');
-    ul.className = 'box'
+    ul.className = 'box';
     li.append(ul);
     const customLi = document.createElement('li');
     customLi.innerHTML = folderName;
 
     const ref = firebase.database().ref('/Folder/');
-    ref.once('value').then(function (snapshot) {
-      let id = `f${snapshot.numChildren() + 1}`;
-      let dbFolder = new DbFolder(id, folderName);
+    ref
+      .once('value')
+      .then(function (snapshot) {
+        let id = `f${snapshot.numChildren() + 1}`;
+        let dbFolder = new DbFolder(id, folderName);
 
-      customLi.id = `f${snapshot.numChildren() + 1}`;
+        customLi.id = `f${snapshot.numChildren() + 1}`;
 
-      Fire.database()
-        .ref(`Folder/${snapshot.numChildren() + 1}`)
-        .set({
-          text: dbFolder,
-        });
-    })
-    .then(function(menu = null){
-      menu = document.querySelector('.menu');
-      menu.classList.add('off');
-      let box = document.getElementsByClassName('box');
-      for(let i = 0;i < box.length; i++){
-        box[i].addEventListener('contextmenu', function(ev){
-          ev.preventDefault(); 
-          //show the custom menu
-          inputBox.value = ev.target.id
-          console.log( ev.clientX, ev.clientY );
-          menu.style.top = `${ev.clientY - 20}px`;
-          menu.style.left = `${ev.clientX - 20}px`;
-          menu.classList.remove('off');
-        
-        });
-      }    
-  })
+        Fire.database()
+          .ref(`Folder/${snapshot.numChildren() + 1}`)
+          .set({
+            text: dbFolder,
+          });
+      })
+      .then(function (menu = null) {
+        menu = document.querySelector('.menu');
+        menu.classList.add('off');
+        let box = document.getElementsByClassName('box');
+        for (let i = 0; i < box.length; i++) {
+          box[i].addEventListener('contextmenu', function (ev) {
+            ev.preventDefault();
+            inputBox.value = ev.target.id;
+            console.log(ev.clientX, ev.clientY);
+            menu.style.top = `${ev.clientY - 20}px`;
+            menu.style.left = `${ev.clientX - 20}px`;
+            menu.classList.remove('off');
+          });
+        }
+      });
 
     customLi.className = 'nestedList';
 
@@ -77,7 +77,6 @@ class Folder {
 
   createInput() {
     if (!this.executed) {
-      // this.executed = true;
       const input = document.createElement('input');
 
       input.type = 'text';
@@ -89,8 +88,7 @@ class Folder {
       };
 
       const div = document.getElementById('inputEl');
-      if(div.childElementCount<1)
-      div.append(input);
+      if (div.childElementCount < 1) div.append(input);
     }
   }
 }

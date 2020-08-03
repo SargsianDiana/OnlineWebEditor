@@ -51,12 +51,6 @@ class Tab {
       for (let i = 0; i < node1.length; i++) {
         node1[i].style.display = 'none';
       }
-
-      // let node1 = document.getElementById('innerCode')
-      // let node2 = document.createElement('button')
-      // node.style.display = 'none'
-      // node1.style.display = 'none'
-      // node2.style.display = 'none'
       this.tab = true;
     }
   }

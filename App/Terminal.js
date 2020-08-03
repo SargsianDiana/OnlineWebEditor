@@ -6,11 +6,9 @@ class Terminal {
     this.terminal = true;
     this.history = [];
     this.txtArea = document.createElement('textarea');
-    //this.i = 5;
   }
 
   openTerminal() {
-
     if (this.terminal) {
       const editor = document.getElementById('editor');
       const div = document.createElement('div');
@@ -26,7 +24,7 @@ class Terminal {
       btn.onclick = () => {
         this.closeTerminal();
         this.terminal = true;
-      }
+      };
 
       this.txtArea.id = 'txtArea';
 
@@ -37,9 +35,7 @@ class Terminal {
       editor.append(div);
 
       this.terminal = false;
-
-    }
-    else {
+    } else {
       this.closeTerminal();
       this.terminal = true;
     }
@@ -53,26 +49,25 @@ class Terminal {
   keyEnterCode = (e) => {
     if (e.keyCode == 13) {
       e.preventDefault();
-      if (this.txtArea.value.length >= 7 && this.txtArea.value.includes("touch")) {
+      if (
+        this.txtArea.value.length >= 7 &&
+        this.txtArea.value.includes('touch')
+      ) {
         this.history.push(this.txtArea.value);
-        const str = this.txtArea.value.slice(5);    // i = 5
-        if (this.txtArea.value.includes('js') || this.txtArea.value.includes('css') || this.txtArea.value.includes('html')) {
+        const str = this.txtArea.value.slice(5);
+        if (
+          this.txtArea.value.includes('js') ||
+          this.txtArea.value.includes('css') ||
+          this.txtArea.value.includes('html')
+        ) {
           fileObj.createFile(str);
-          //this.i += 1;
-        }
-        else {
+        } else {
           folderObj.createFolder(str);
-          //this.i += 1;
         }
-        this.txtArea.value = "";
+        this.txtArea.value = '';
       }
-
-      // else {
-      //   this.txtArea.value = "Wrong Command";
-      // }
     }
-  }
-
+  };
 }
 
 export default new Terminal();

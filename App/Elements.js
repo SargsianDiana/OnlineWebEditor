@@ -11,19 +11,12 @@ const createBtnImg = function (el, src, title, classList, cb) {
   htmlEl.title = title;
   htmlEl.classList = classList;
   htmlEl.onclick = cb;
-  // const div = document.getElementById('folders');
   pEl.append(htmlEl);
 };
 
-createBtnImg(
-  'img',
-  './image/file.png',
-  'New file',
-  'actionFile',
-  function () {
-    return fileObj.createInput();
-  }
-);
+createBtnImg('img', './image/file.png', 'New file', 'actionFile', function () {
+  return fileObj.createInput();
+});
 
 createBtnImg(
   'img',
@@ -54,7 +47,6 @@ createBtnImg(
     return terminalObj.openTerminal();
   }
 );
-
 
 terminalObj.txtArea.onkeypress = () => terminalObj.keyEnterCode(event);
 

@@ -5,5 +5,3 @@ import Config from './../firebase/config.js';
 
 let myList = new MyList();
 myList.createMyList();
-
-

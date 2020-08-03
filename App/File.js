@@ -47,7 +47,6 @@ class File {
           for (let i = 0; i < box.length; i++) {
             box[i].addEventListener('contextmenu', function (ev) {
               ev.preventDefault();
-              //show the custom menu
               inputBox.value = ev.target.id;
               console.log(ev.clientX, ev.clientY);
               menu.style.top = `${ev.clientY - 20}px`;
@@ -89,7 +88,6 @@ class File {
           for (let i = 0; i < box.length; i++) {
             box[i].addEventListener('contextmenu', function (ev) {
               ev.preventDefault();
-              //show the custom menu
               inputBox.value = ev.target.id;
               console.log(ev.clientX, ev.clientY);
               menu.style.top = `${ev.clientY - 20}px`;
@@ -118,13 +116,10 @@ class File {
     }
   }
 
-
-
   keyEnterCode(e) {
     if (e.keyCode == 13) {
       let inputEl = document.getElementById('fileBox');
       this.createFile(inputEl.value);
-      // this.findFileType(inputEl.value);
       inputEl.remove();
       this.executed = false;
     }
@@ -132,7 +127,6 @@ class File {
 
   createInput() {
     if (!this.executed) {
-      // this.executed = !this.executed;
       const input = document.createElement('input');
 
       input.type = 'text';
@@ -144,8 +138,7 @@ class File {
       };
 
       const div = document.getElementById('inputEl');
-      if(div.childElementCount<1)
-      div.append(input);
+      if (div.childElementCount < 1) div.append(input);
     }
   }
 
@@ -157,10 +150,10 @@ class File {
       return elType + typeName;
     } else if (str[1] === 'css') {
       elType = '<span id="cssType"> # </span>';
-      return elType  + typeName;
+      return elType + typeName;
     } else if (str[1] === 'js') {
       elType = '<span id="jsType"> JS </span>';
-      return elType  + typeName;
+      return elType + typeName;
     }
   }
 }

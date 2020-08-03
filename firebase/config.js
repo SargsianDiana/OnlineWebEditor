@@ -9,7 +9,7 @@ const firebaseConfig = {
   measurementId: 'G-GDREHWPSG9',
 };
 
-// Initialize Firebase
+
 let fire = firebase.initializeApp(firebaseConfig);
 
 export default fire;

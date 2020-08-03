@@ -17,25 +17,20 @@ class MyList {
       .ref('/Folder/')
       .once('value')
       .then(function (snapshot) {
-        // alert(snapshot.numChildren())
         let customUl = '';
         let folderArrays = [];
 
-        
+        snapshot.forEach(function (snapshot) {
+          customUl += `<ul id=${snapshot.val().text.id} class='box'>`;
+          customUl += `<li id=${
+            snapshot.val().text.id
+          } class='nestedList box'>${snapshot.val().text.text}</li>`;
 
-        snapshot.forEach(function(snapshot) {
-            customUl += `<ul id=${snapshot.val().text.id} class='box'>`;
-            customUl += `<li id=${
-              snapshot.val().text.id
-            } class='nestedList box'>${snapshot.val().text.text}</li>`;
+          let folderId = snapshot.val().text.id;
+          folderArrays.push(folderId);
 
-            let folderId = snapshot.val().text.id;
-            folderArrays.push(folderId);
-
-            customUl += '</ul>';
+          customUl += '</ul>';
         });
-
-        
 
         myLiList.innerHTML = customUl;
 
@@ -56,16 +51,16 @@ class MyList {
           .ref('/subMenu/')
           .once('value')
           .then(function (snapshotOne) {
-            snapshotOne.forEach(function(snapshotOne) {
-                let element = document.getElementById(
-                  snapshotOne.val().text.folderId
-                );
-                element.innerHTML += `<li id=${
-                  snapshotOne.val().text.id
-                } class='toggle box'>${
-                  File.findFireFileTypes(snapshotOne.val().text.text)
-                }</li>`;
-              });
+            snapshotOne.forEach(function (snapshotOne) {
+              let element = document.getElementById(
+                snapshotOne.val().text.folderId
+              );
+              element.innerHTML += `<li id=${
+                snapshotOne.val().text.id
+              } class='toggle box'>${File.findFireFileTypes(
+                snapshotOne.val().text.text
+              )}</li>`;
+            });
 
             const nestedList = document.getElementsByClassName('nestedList');
             for (let index = 0; index < nestedList.length; index++) {
@@ -120,14 +115,12 @@ class MyList {
       .ref('/Menu1/')
       .once('value')
       .then(function (snapshotTwo) {
-        
-        snapshotTwo.forEach(function(snapshotTwo) {
-          myUlList.innerHTML += `<li id=${
-            snapshotTwo.val().text.id}
-           class='box'>${File.findFireFileTypes(snapshotTwo.val().text.text)}</li>`;
-          });
-          
-        
+        snapshotTwo.forEach(function (snapshotTwo) {
+          myUlList.innerHTML += `<li id=${snapshotTwo.val().text.id}
+           class='box'>${File.findFireFileTypes(
+             snapshotTwo.val().text.text
+           )}</li>`;
+        });
 
         for (let i = 0; i < snapshotTwo.numChildren(); i++) {
           document

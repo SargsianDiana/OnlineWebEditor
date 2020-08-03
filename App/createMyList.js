@@ -1,4 +1,4 @@
-import Fire from './../firebase/config.js';
+import Fire from '../firebase/config.js';
 import Tab from './Tabs.js';
 import File from './File.js';
 

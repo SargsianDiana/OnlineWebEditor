@@ -1,5 +1,5 @@
-import DbFolder from './../firebase/dbFolder.js';
-import Fire from './../firebase/config.js';
+import DbFolder from '../firebase/dbFolder.js';
+import Fire from '../firebase/config.js';
 
 class Folder {
   constructor(name) {

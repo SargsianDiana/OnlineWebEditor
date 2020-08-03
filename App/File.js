@@ -1,5 +1,5 @@
-import Menu from './../firebase/menu.js';
-import Fire from './../firebase/config.js';
+import Menu from '../firebase/menu.js';
+import Fire from '../firebase/config.js';
 import Submenu from '../firebase/submenu.js';
 import Tab from './Tabs.js';
 import MyList from './createMyList.js';
